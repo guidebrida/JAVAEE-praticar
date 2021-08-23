@@ -1,4 +1,6 @@
-package com.mycompany.manutencaojavaee.resources;
+package resources;
+
+
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
