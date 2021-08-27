@@ -1,25 +1,31 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package domain.enums;
 
-public enum Status {
-    
-    FAZENDOORCAMENENTO(0, "FAZENDO_ORCAMENTO"),
-    AGUARDANDOAPROVACAO(1, "AGUARDANDO_APROVACAO"),
-    APROVADO(2, "APROVADO"),
-    REJEITADO(3, "REJEITADO"),
-    CONCLUIDO(4, "CONCLUIDO");
+
+public enum Funcionarios {
+    RECEPCIONISTA(1,"ROLE_RECEPCIONISTA"),
+    TECNICO(2, "ROLE_TECNICO"),
+    ADMIN(3, "ROLE_ADMIN");
+
 
     private int cod;
     private String descricao;
 
-    Status(int cod, String descricao) {
+    Funcionarios(int cod, String descricao) {
         this.cod = cod;
         this.descricao = descricao;
     }
 
-    
     public int getCod() {
         return cod;
+    }
+
+    public void setCod(int cod) {
+        this.cod = cod;
     }
 
     public String getDescricao() {
@@ -29,19 +35,16 @@ public enum Status {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-        
-        public static Status toEnum(Integer cod) {
+
+    public static Funcionarios toEnum(Integer cod) {
         if (cod == null) {
             return null;
         }
-        for (Status x : Status.values()) {
+        for (Funcionarios x : Funcionarios.values()) {
             if (cod.equals(x.getCod())) {
                 return x;
             }
         }
         throw new IllegalArgumentException("Id inválido: " + cod);
     }
-
-
 }
-

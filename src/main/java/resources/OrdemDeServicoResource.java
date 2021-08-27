@@ -5,10 +5,8 @@
  */
 package resources;
 
-import domain.Cliente;
-import domain.enums.TipoCliente;
-import java.util.ArrayList;
-import java.util.List;
+import domain.OrdemDeServico;
+import java.time.LocalDateTime;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,38 +18,34 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("clientes")
-public class ClientesResource {
-
+@Path("ordemdeservicos")
+public class OrdemDeServicoResource {
     
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{id}/")
-    public Cliente getCliente(@PathParam("id") Integer id) {
-        Cliente c1 = new Cliente();
-        c1.setId(id);
-        c1.setCpfCnpj("ID DO CPF " + id);
-        c1.setEmail("ID DO EMAIL: " + id);
-        c1.setNome("ID DO NOME: " + id);
-        c1.setTelefone("ID DO Telefone: " + id);
-        c1.setTipo(id);
-        return c1;
-    }
-
-    @POST
+    public OrdemDeServico getOrdemDeServico(@PathParam("Id") Integer id) {
+        OrdemDeServico o1 = new OrdemDeServico();
+        o1.setId(1);
+        o1.setCliente(null);
+        o1.setInstante(LocalDateTime.now());
+        o1.setImageUrl("https://debrida-projeto-betha.s3.sa-east-1.amazonaws.com/odfoto.jpg");
+        o1.setEquipamentos(null);
+        o1.setStatus(1);
+        return o1;
+    }    
+        @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
-    public Response create(Cliente cliente) {
-        System.out.println(cliente.toString());
+    public Response create(OrdemDeServico ordemDeServico) {
+        System.out.println(ordemDeServico.toString());
         return Response.status(Response.Status.OK).build();
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
-    public Response update(Cliente cliente) {
-        System.out.println(cliente.toString());
+    public Response update(OrdemDeServico ordemDeServico) {
+        System.out.println(ordemDeServico.toString());
         return Response.status(Response.Status.OK).build();
     }
 
