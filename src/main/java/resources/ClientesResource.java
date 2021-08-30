@@ -38,7 +38,7 @@ public class ClientesResource {
         c1.setTipo(id);
         return c1;
     }
-
+    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")

@@ -20,20 +20,14 @@ import javax.ws.rs.core.Response;
 
 @Path("ordemdeservicos")
 public class OrdemDeServicoResource {
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public OrdemDeServico getOrdemDeServico(@PathParam("Id") Integer id) {
-        OrdemDeServico o1 = new OrdemDeServico();
-        o1.setId(1);
-        o1.setCliente(null);
-        o1.setInstante(LocalDateTime.now());
-        o1.setImageUrl("https://debrida-projeto-betha.s3.sa-east-1.amazonaws.com/odfoto.jpg");
-        o1.setEquipamentos(null);
-        o1.setStatus(1);
-        return o1;
-    }    
-        @POST
+        return null;
+    }
+
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/")
     public Response create(OrdemDeServico ordemDeServico) {
