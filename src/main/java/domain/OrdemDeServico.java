@@ -5,6 +5,7 @@
  */
 package domain;
 
+import domain.enums.Status;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -62,12 +63,17 @@ public class OrdemDeServico implements Serializable {
         this.instante = instante;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Status getStatus() {
+        return Status.toEnum(status);
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setStatus(Status status) {
+        if (status != null) {
+            this.status = status.getCod();
+        } else {
+            this.status = 0;
+        }
+
     }
 
     public List<Equipamento> getEquipamentos() {

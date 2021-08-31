@@ -1,6 +1,7 @@
 package services;
 
 import domain.Cliente;
+import domain.Equipamento;
 import domain.OrdemDeServico;
 import domain.enums.Status;
 import dto.OrdemDeServicoDTO;
@@ -18,14 +19,14 @@ public class OrdemDeServicoService {
     @PersistenceContext(unitName = "restapi_PU")
     EntityManager em;
 
-     @Inject
-     ClienteService clienteService;
-    
+    @Inject
+    ClienteService clienteService;
+
     public List getAll() {
         return em.createNamedQuery("OrdemDeServico.findAll", OrdemDeServico.class).getResultList();
     }
 
-    public OrdemDeServico findById(Long id) {
+    public OrdemDeServico findById(Integer id) {
         return em.find(OrdemDeServico.class, id);
     }
 
@@ -45,13 +46,13 @@ public class OrdemDeServicoService {
         em.remove(ordemDeServico);
     }
 
-    public OrdemDeServico fromDTO(OrdemDeServicoDTO objDto) {
-        return new OrdemDeServico(objDto.getId(), null, null);
-    }
+//    public OrdemDeServico fromDTO(OrdemDeServicoDTO objDto) {
+//        return new OrdemDeServico(objDto.getId(), null, null);
+//    }
 
     public OrdemDeServico fromDTO(OrdemDeServicoNewDTO objDto) {
         OrdemDeServico ord = new OrdemDeServico();
-        Cliente cli = clienteService.find(objDto.getClienteId());
+        Cliente cli = clienteService.findById(objDto.getClienteId());
         Equipamento eq = new Equipamento(null, objDto.getNome(), objDto.getMarca(), objDto.getDescricao(), objDto.getDefeito());
         ord.setInstante(LocalDateTime.now());
         ord.setStatus(Status.toEnum(objDto.getStatus()));
@@ -61,6 +62,25 @@ public class OrdemDeServicoService {
         ord.setEquipamentos(eq.getOrdemDeServico().getEquipamentos());
         return ord;
     }
+    
+        private void updateData(OrdemDeServico newObj, OrdemDeServico obj) {
+        newObj.setInstante(obj.getInstante());
+        newObj.setCliente(obj.getCliente());
+        newObj.setEquipamentos(obj.getEquipamentos());
+        newObj.setImageUrl(obj.getImageUrl());
+    }
+        
+//    
+//      public OrdemDeServico aprovarStatus(Integer id){
+//        OrdemDeServico obj = find(id);
+//        obj.setStatus(Status.APROVADO);
+//        return repo.save(obj);
+//    }
+//
+//    public OrdemDeServico rejeitarStatus(Integer id){
+//        OrdemDeServico obj = find(id);
+//        obj.setStatus(Status.REJEITADO);
+//        return repo.save(obj);
+//    }
 
-}
 }

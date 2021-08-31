@@ -5,6 +5,7 @@
  */
 package domain;
 
+import domain.enums.TipoCliente;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,19 +23,18 @@ import javax.persistence.OneToOne;
  */
 public class Cliente implements Serializable {
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; 
+    private Integer id;
     private String nome;
-   // @Column(unique = true)
+    // @Column(unique = true)
     private String email;
     private String cpfCnpj;
     private String telefone;
     private Integer tipo;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
     private Endereco endereco;
-   // @JsonIgnore
+    // @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<OrdemDeServico> ordemDeServico = new ArrayList<>();
 
@@ -90,12 +90,12 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
     }
 
-    public Integer getTipo() {
-        return tipo;
+    public TipoCliente getTipo() {
+        return TipoCliente.toEnum(tipo);
     }
 
-    public void setTipo(Integer tipo) {
-        this.tipo = tipo;
+    public void setTipo(TipoCliente tipo) {
+        this.tipo = tipo.getCod();
     }
 
     public Endereco getEndereco() {
@@ -143,11 +143,4 @@ public class Cliente implements Serializable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
-    
-    
-
-    
-   
-    
 }
