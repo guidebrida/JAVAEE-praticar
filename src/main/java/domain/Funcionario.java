@@ -5,6 +5,7 @@
  */
 package domain;
 
+import domain.enums.Funcionarios;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.GeneratedValue;
@@ -23,16 +24,19 @@ public class Funcionario implements Serializable {
 
     private Integer funcionario;
     private String usuario;
-    private String senha;
+//    private String senha;
 
     public Funcionario() {
     }
 
-    public Funcionario(Integer id, Integer funcionario, String usuario, String senha) {
+    public Funcionario(Integer id, Funcionarios funcionario, String usuario, String senha) {
         this.id = id;
-        this.funcionario = funcionario;
+        this.funcionario = (funcionario==null) ? null : funcionario.getCod();
         this.usuario = usuario;
-        this.senha = senha;
+    }
+
+    public Funcionario(Integer id, Funcionarios funcionarios, String usuario) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public Integer getId() {
@@ -42,9 +46,8 @@ public class Funcionario implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public Integer getFuncionario() {
-        return funcionario;
+  public Funcionarios getFuncionario() {
+        return Funcionarios.toEnum(funcionario);
     }
 
     public void setFuncionario(Integer funcionario) {
@@ -59,13 +62,13 @@ public class Funcionario implements Serializable {
         this.usuario = usuario;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+//    public String getSenha() {
+//        return senha;
+//    }
+//
+//    public void setSenha(String senha) {
+//        this.senha = senha;
+//    }
 
     @Override
     public int hashCode() {
