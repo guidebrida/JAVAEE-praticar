@@ -2,6 +2,7 @@ package resources;
 
 import domain.Cliente;
 import domain.Funcionario;
+import domain.OrdemDeServico;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -21,11 +22,11 @@ public class FuncionariosResource {
     FuncionariosService funcionariosService;
 
     @GET
-    public Response getALL(){
+    public Response getALL() {
         return Response.ok(funcionariosService.getAll()).build();
     }
-    
-      @GET
+
+    @GET
     @Path("{id}")
     public Response getTodo(@PathParam("id") Long id) {
         Funcionario funcionario = funcionariosService.findById(id);
@@ -33,4 +34,19 @@ public class FuncionariosResource {
         return Response.ok(funcionario).build();
     }
 
+    @POST
+    public Response create(Funcionario funcionario) {
+        funcionariosService.create(funcionario);
+        return Response.ok().build();
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Response delete(@PathParam("id") Long id) {
+        Funcionario funcionario = funcionariosService.findById(id);
+
+        funcionariosService.delete(funcionario);
+
+        return Response.ok().build();
+    }
 }

@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import domain.Funcionario;
+import domain.OrdemDeServico;
 
 @Stateless
 public class FuncionariosService {
@@ -18,6 +19,18 @@ public class FuncionariosService {
 
     public Funcionario findById(Long id) {
         return em.find(Funcionario.class, id);
+    }
+
+    public void create(Funcionario funcionario) {
+        em.persist(funcionario);
+    }
+
+    public void delete(Funcionario funcionario) {
+        if (!em.contains(funcionario)) {
+            funcionario = em.merge(funcionario);
+        }
+        
+        em.remove(funcionario);
     }
 
 }

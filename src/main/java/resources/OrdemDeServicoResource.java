@@ -46,6 +46,16 @@ public class OrdemDeServicoResource {
         return Response.ok().build();
     }
 
+    @PUT
+    @Path("{id}")
+    public Response update(@PathParam("id") Long id, Cliente cliente) {
+        OrdemDeServico OrdemDeServicoUpdate = ordemDeServicoService.findById(id);
+        OrdemDeServicoUpdate.setInstante(LocalDateTime.MIN);
+        ordemDeServicoService.update(OrdemDeServicoUpdate);
+
+        return Response.ok().build();
+    }
+
     @DELETE
     @Path("{id}")
     public Response delete(@PathParam("id") Long id) {
@@ -55,5 +65,7 @@ public class OrdemDeServicoResource {
 
         return Response.ok().build();
     }
+    
+    
 
 }
