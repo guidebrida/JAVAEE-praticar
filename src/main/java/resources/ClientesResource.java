@@ -6,9 +6,11 @@
 package resources;
 
 import domain.Cliente;
+import domain.Funcionario;
 import domain.enums.TipoCliente;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,46 +21,54 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import services.CLienteServices;
 
 @Path("clientes")
 public class ClientesResource {
 
-    
+    @Inject
+    CLienteServices clienteServices;
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("{id}/")
-    public Cliente getCliente(@PathParam("id") Integer id) {
-        Cliente c1 = new Cliente();
-        c1.setId(id);
-        c1.setCpfCnpj("ID DO CPF " + id);
-        c1.setEmail("ID DO EMAIL: " + id);
-        c1.setNome("ID DO NOME: " + id);
-        c1.setTelefone("ID DO Telefone: " + id);
-        c1.setTipo(id);
-        return c1;
+    public Response getALL() {
+        return Response.ok(clienteServices.getAll()).build();
     }
-    
+
+    @GET
+    @Path("{id}")
+    public Response getTodo(@PathParam("id") Long id) {
+        Cliente Cliente = clienteServices.findById(id);
+
+        return Response.ok(Cliente).build();
+    }
+
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
     public Response create(Cliente cliente) {
-        System.out.println(cliente.toString());
-        return Response.status(Response.Status.OK).build();
+        clienteServices.create(cliente);
+        return Response.ok().build();
     }
 
     @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
-    public Response update(Cliente cliente) {
-        System.out.println(cliente.toString());
-        return Response.status(Response.Status.OK).build();
+    @Path("{id}")
+    public Response update(@PathParam("id") Long id, Cliente cliente) {
+        Cliente clienteUpdate = clienteServices.findById(id);
+        clienteUpdate.setCpfCnpj(cliente.getCpfCnpj());
+        clienteUpdate.setEmail(cliente.getEmail());
+        clienteUpdate.setNome(cliente.getNome());
+        clienteUpdate.setTelefone(cliente.getTelefone());
+        clienteServices.update(clienteUpdate);
+
+        return Response.ok().build();
     }
 
     @DELETE
-    @Path("{id}/")
-    public Response delete(@PathParam("id") long id) {
-        System.out.println("Deletando ID: " + id);
-        return Response.status(Response.Status.OK).build();
+    @Path("{id}")
+    public Response delete(@PathParam("id") Long id) {
+        Cliente cliente = clienteServices.findById(id);
+
+        clienteServices.delete(cliente);
+
+        return Response.ok().build();
     }
+
 }

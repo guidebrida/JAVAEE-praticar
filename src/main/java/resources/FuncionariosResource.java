@@ -33,24 +33,4 @@ public class FuncionariosResource {
         return Response.ok(funcionario).build();
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
-    public Response create(Funcionario funcionario) {
-        return Response.status(Response.Status.OK).build();
-    }
-
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
-    public Response update(Funcionario funcionario) {
-
-        return Response.status(Response.Status.OK).build();
-    }
-
-    @DELETE
-    @Path("{id}/")
-    public Response delete(@PathParam("id") long id) {
-        return Response.status(Response.Status.OK).build();
-    }
 }

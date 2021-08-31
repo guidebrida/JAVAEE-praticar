@@ -1,6 +1,5 @@
 package services;
 
-
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -12,12 +11,13 @@ public class FuncionariosService {
 
     @PersistenceContext(unitName = "restapi_PU")
     EntityManager em;
-    
-    public List getAll(){
+
+    public List getAll() {
         return em.createNamedQuery("Funcionario.findAll", Funcionario.class).getResultList();
     }
-     public Funcionario findById(Long id) {
+
+    public Funcionario findById(Long id) {
         return em.find(Funcionario.class, id);
     }
-    
+
 }

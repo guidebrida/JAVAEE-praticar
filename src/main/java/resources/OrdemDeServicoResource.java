@@ -5,8 +5,10 @@
  */
 package resources;
 
+import domain.Cliente;
 import domain.OrdemDeServico;
 import java.time.LocalDateTime;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -17,36 +19,41 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import services.OrdemDeServicoService;
 
 @Path("ordemdeservicos")
 public class OrdemDeServicoResource {
 
+    @Inject
+    OrdemDeServicoService ordemDeServicoService;
+
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public OrdemDeServico getOrdemDeServico(@PathParam("Id") Integer id) {
-        return null;
+    public Response getALL() {
+        return Response.ok(ordemDeServicoService.getAll()).build();
+    }
+
+    @GET
+    @Path("{id}")
+    public Response getTodo(@PathParam("id") Long id) {
+        OrdemDeServico ordemDeServico = ordemDeServicoService.findById(id);
+
+        return Response.ok(ordemDeServico).build();
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
     public Response create(OrdemDeServico ordemDeServico) {
-        System.out.println(ordemDeServico.toString());
-        return Response.status(Response.Status.OK).build();
-    }
-
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/")
-    public Response update(OrdemDeServico ordemDeServico) {
-        System.out.println(ordemDeServico.toString());
-        return Response.status(Response.Status.OK).build();
+        ordemDeServicoService.create(ordemDeServico);
+        return Response.ok().build();
     }
 
     @DELETE
-    @Path("{id}/")
-    public Response delete(@PathParam("id") long id) {
-        System.out.println("Deletando ID: " + id);
-        return Response.status(Response.Status.OK).build();
+    @Path("{id}")
+    public Response delete(@PathParam("id") Long id) {
+        OrdemDeServico ordemDeServico = ordemDeServicoService.findById(id);
+
+        ordemDeServicoService.delete(ordemDeServico);
+
+        return Response.ok().build();
     }
+
 }
