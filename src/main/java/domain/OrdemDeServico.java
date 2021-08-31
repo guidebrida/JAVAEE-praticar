@@ -23,7 +23,6 @@ import javax.persistence.Table;
 @Table
 public class OrdemDeServico implements Serializable {
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -94,9 +93,5 @@ public class OrdemDeServico implements Serializable {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    
-    
-    
-}
-    
 
+}

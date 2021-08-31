@@ -5,7 +5,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import domain.Funcionario;
-import domain.OrdemDeServico;
 import dto.FuncionarioDTO;
 
 @Stateless
@@ -25,9 +24,9 @@ public class FuncionariosService {
     public void create(Funcionario funcionario) {
         em.persist(funcionario);
     }
-    
-       public Funcionario fromDTO(FuncionarioDTO objDto) {
-        return new Funcionario(objDto.getId(), objDto.getFuncionarios(), objDto.getUsuario(), pe.encode(objDto.getSenha()));
+
+    public Funcionario fromDTO(FuncionarioDTO objDto) {
+        return new Funcionario(objDto.getId(), objDto.getFuncionarios(), objDto.getUsuario());
 
     }
 
@@ -35,7 +34,7 @@ public class FuncionariosService {
         if (!em.contains(funcionario)) {
             funcionario = em.merge(funcionario);
         }
-        
+
         em.remove(funcionario);
     }
 

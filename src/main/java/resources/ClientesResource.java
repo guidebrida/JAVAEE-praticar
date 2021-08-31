@@ -21,13 +21,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import services.CLienteServices;
+import services.ClienteService;
 
 @Path("clientes")
 public class ClientesResource {
 
     @Inject
-    CLienteServices clienteServices;
+    ClienteService clienteServices;
 
     @GET
     public Response getALL() {

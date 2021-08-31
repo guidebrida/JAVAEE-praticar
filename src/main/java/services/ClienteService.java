@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class CLienteServices {
+public class ClienteService {
 
     @PersistenceContext(unitName = "restapi_PU")
     EntityManager em;
