@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package dto;
 
 import domain.enums.TipoCliente;
@@ -10,11 +7,10 @@ import java.io.Serializable;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-/**
- *
- * @author guilherme.bona
- */
+
+
 public class ClienteNewDTO implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @NotEmpty(message = "Prenchimento obrigatório")
@@ -40,10 +36,10 @@ public class ClienteNewDTO implements Serializable {
     @NotEmpty(message = "Prenchimento obrigatório")
     private String estado;
 
-    public ClienteNewDTO(){
+    public ClienteNewDTO() {
     }
 
-    public ClienteNewDTO( Integer id, String nome, String email, String cpfCnpj, String telefone, TipoCliente tipoCliente, String logradouro, String numero, String complemento, String bairro, String cep, String cidade, String estado) {
+    public ClienteNewDTO(String nome, String email, String cpfCnpj, String telefone, TipoCliente tipoCliente, String logradouro, String numero, String complemento, String bairro, String cep, String cidade, String estado) {
 
         this.nome = nome;
         this.email = email;
@@ -58,7 +54,6 @@ public class ClienteNewDTO implements Serializable {
         this.cidade = cidade;
         this.estado = estado;
     }
-
 
     public String getNome() {
         return nome;

@@ -17,37 +17,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-/**
- *
- * @author guilherme.bona
- */
+
 public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    // @Column(unique = true)
     private String email;
     private String cpfCnpj;
     private String telefone;
     private Integer tipo;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
     private Endereco endereco;
-    // @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<OrdemDeServico> ordemDeServico = new ArrayList<>();
 
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nome, String email, String cpfCnpj, String telefone, Integer tipo) {
+    public Cliente(Integer id, String nome, String email, String cpfCnpj, String telefone, TipoCliente tipo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpfCnpj = cpfCnpj;
         this.telefone = telefone;
-        this.tipo = tipo;
+        this.tipo = (tipo == null) ? null : tipo.getCod();
     }
 
     public Integer getId() {

@@ -29,15 +29,13 @@ public class Funcionario implements Serializable {
     public Funcionario() {
     }
 
-    public Funcionario(Integer id, Funcionarios funcionario, String usuario, String senha) {
+    public Funcionario(Integer id, Funcionarios funcionario, String usuario) {
         this.id = id;
-        this.funcionario = (funcionario==null) ? null : funcionario.getCod();
+        this.funcionario = (funcionario == null) ? null : funcionario.getCod();
         this.usuario = usuario;
     }
 
-    public Funcionario(Integer id, Funcionarios funcionarios, String usuario) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+ 
 
     public Integer getId() {
         return id;
@@ -46,7 +44,8 @@ public class Funcionario implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-  public Funcionarios getFuncionario() {
+
+    public Funcionarios getFuncionario() {
         return Funcionarios.toEnum(funcionario);
     }
 
@@ -69,7 +68,6 @@ public class Funcionario implements Serializable {
 //    public void setSenha(String senha) {
 //        this.senha = senha;
 //    }
-
     @Override
     public int hashCode() {
         int hash = 7;
@@ -94,6 +92,5 @@ public class Funcionario implements Serializable {
         }
         return true;
     }
-    
-    
+
 }

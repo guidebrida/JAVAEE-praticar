@@ -13,12 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-/**
- *
- * @author guilherme.bona
- */
 public class Endereco implements Serializable {
-
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,8 +32,6 @@ public class Endereco implements Serializable {
     public Endereco() {
     }
     
-    
-
     public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, String cidade, String estado, Cliente cliente) {
         this.id = id;
         this.logradouro = logradouro;

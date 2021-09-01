@@ -21,7 +21,7 @@ public class EquipamentosService {
         return em.createNamedQuery("Equipamento.findAll", Equipamento.class).getResultList();
     }
 
-    public Equipamento findById(Long id) {
+    public Equipamento findById(Integer id) {
         return em.find(Equipamento.class, id);
     }
 
@@ -40,5 +40,5 @@ public class EquipamentosService {
 
         em.remove(equipamento);
     }
-
+    
 }

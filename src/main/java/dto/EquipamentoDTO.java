@@ -12,10 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
-/**
- *
- * @author guilherme.bona
- */
 public class EquipamentoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
        

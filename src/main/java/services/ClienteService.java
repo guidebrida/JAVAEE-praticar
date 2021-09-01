@@ -6,6 +6,7 @@
 package services;
 
 import domain.Cliente;
+import domain.Endereco;
 import dto.ClienteDTO;
 import dto.ClienteNewDTO;
 import java.util.List;
@@ -44,10 +45,12 @@ public class ClienteService {
     }
 
     public Cliente fromDTO(ClienteNewDTO objDto) {
-        Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), objDto.getCidade(), objDto.getEstado());
+//        Endereco end = new Endereco( objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), objDto.getCidade(), objDto.getEstado());
+        //     Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(),objDto.getBairro(), objDto.getCep(),objDto.getCidade(), objDto.getEstado());
         Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfCnpj(), objDto.getTelefone(), objDto.getTipoCliente());
-        cli.setEndereco(end);
-        end.setCliente(cli);
+//       em.merge(end);
+//        cli.setEndereco(end);
+//        end.setCliente(cli);
         return cli;
     }
 

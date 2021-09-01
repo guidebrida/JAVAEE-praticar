@@ -40,11 +40,12 @@ public class OrdemDeServico implements Serializable {
     public OrdemDeServico() {
     }
 
-    public OrdemDeServico(Integer id, LocalDateTime instante, Integer status, String imageUrl) {
+public OrdemDeServico(Integer id, Status status, String imageUrl) {
         this.id = id;
-        this.instante = instante;
-        this.status = status;
+        this.instante = LocalDateTime.now();
+        this.status = (status == null) ? null : status.getCod();
         this.imageUrl = imageUrl;
+
     }
 
     public Integer getId() {

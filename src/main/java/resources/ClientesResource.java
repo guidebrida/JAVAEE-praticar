@@ -36,7 +36,7 @@ public class ClientesResource {
 
     @GET
     @Path("{id}")
-    public Response getTodo(@PathParam("id") Long id) {
+    public Response getTodo(@PathParam("id") Integer id) {
         Cliente Cliente = clienteServices.findById(id);
 
         return Response.ok(Cliente).build();
@@ -50,7 +50,7 @@ public class ClientesResource {
 
     @PUT
     @Path("{id}")
-    public Response update(@PathParam("id") Long id, Cliente cliente) {
+    public Response update(@PathParam("id") Integer id, Cliente cliente) {
         Cliente clienteUpdate = clienteServices.findById(id);
         clienteUpdate.setCpfCnpj(cliente.getCpfCnpj());
         clienteUpdate.setEmail(cliente.getEmail());
@@ -63,7 +63,7 @@ public class ClientesResource {
 
     @DELETE
     @Path("{id}")
-    public Response delete(@PathParam("id") Long id) {
+    public Response delete(@PathParam("id") Integer id) {
         Cliente cliente = clienteServices.findById(id);
 
         clienteServices.delete(cliente);

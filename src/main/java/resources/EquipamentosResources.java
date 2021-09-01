@@ -29,7 +29,7 @@ public class EquipamentosResources {
     
     @GET
     @Path("{id}")
-    public Response getTodo(@PathParam("id") Long id) {
+    public Response getTodo(@PathParam("id") Integer id) {
         Equipamento equipamento = equipamentosService.findById(id);
         
         return Response.ok(equipamento).build();
@@ -43,7 +43,7 @@ public class EquipamentosResources {
     
     @PUT
     @Path("{id}")
-    public Response update(@PathParam("id") Long id, Equipamento equipamento) {
+    public Response update(@PathParam("id") Integer id, Equipamento equipamento) {
         Equipamento equipamentoUpdate = equipamentosService.findById(id);
         equipamentoUpdate.setNome(equipamento.getNome());
         equipamentoUpdate.setDefeito(equipamento.getDefeito());
@@ -56,7 +56,7 @@ public class EquipamentosResources {
     
     @DELETE
     @Path("{id}")
-    public Response delete(@PathParam("id") Long id) {
+    public Response delete(@PathParam("id") Integer id) {
         Equipamento equipamento = equipamentosService.findById(id);
         equipamentosService.delete(equipamento);
         return Response.ok().build();
