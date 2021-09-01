@@ -3,6 +3,7 @@ import domain.Cliente;
 import domain.Equipamento;
 import domain.Funcionario;
 import domain.OrdemDeServico;
+import domain.enums.Funcionarios;
 import domain.enums.Status;
 import domain.enums.TipoCliente;
 import javax.ws.rs.ApplicationPath;
@@ -29,6 +30,9 @@ public class JAXRSConfiguration extends Application {
     Cliente cli1 = new Cliente(null, "Joao pedro folchini", "JPFolchini@gmail.com", "15158370095", "4899001122", TipoCliente.PESSOAFISICA);
     Cliente cli2 = new Cliente(null, "vicenzo de faverri", "vicendoFAV@hotmail.com", "27504060000106", "4896119005", TipoCliente.PESSOAJURIDICA);
 
-    Funcionario func1 = new Funcionario(null, "")
+    Funcionario func1 = new Funcionario(null, Funcionarios.ADMIN, "admin");
+    Funcionario func2 = new Funcionario(null, Funcionarios.RECEPCIONISTA, "recepcionista");
+    Funcionario func3 = new Funcionario(null, Funcionarios.TECNICO, "tecnico");
+
     
 }
