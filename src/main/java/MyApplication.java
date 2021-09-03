@@ -1,7 +1,7 @@
 
 import domain.Cliente;
+import domain.Endereco;
 import domain.Equipamento;
-import domain.Funcionario;
 import domain.OrdemDeServico;
 import domain.enums.Funcionarios;
 import domain.enums.Status;
@@ -9,11 +9,7 @@ import domain.enums.TipoCliente;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-/**
- * Configures JAX-RS for the application.
- *
- * @author Juneau
- */
+
 @ApplicationPath("app")
 public class MyApplication extends Application {
 
@@ -30,9 +26,6 @@ public class MyApplication extends Application {
     Cliente cli1 = new Cliente(null, "Joao pedro folchini", "JPFolchini@gmail.com", "15158370095", "4899001122", TipoCliente.PESSOAFISICA);
     Cliente cli2 = new Cliente(null, "vicenzo de faverri", "vicendoFAV@hotmail.com", "27504060000106", "4896119005", TipoCliente.PESSOAJURIDICA);
 
-    Funcionario func1 = new Funcionario(null, Funcionarios.ADMIN, "admin");
-    Funcionario func2 = new Funcionario(null, Funcionarios.RECEPCIONISTA, "recepcionista");
-    Funcionario func3 = new Funcionario(null, Funcionarios.TECNICO, "tecnico");
-
-    
+    Endereco end1 = new Endereco(null, "rua dos patos", "210", "CASA BRANCA", "PALMEIRA BAIXA", "88840000", "Urussanga", "Santa Catarina");
+    Endereco end2 = new Endereco(null, "Rua centenario", "401", "Em frente a igreja", "Horizonte", "5151000", "lages", "Santa Catarina");
 }

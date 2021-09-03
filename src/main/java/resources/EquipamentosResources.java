@@ -18,29 +18,29 @@ import services.EquipamentosService;
 
 @Path("equipamentos")
 public class EquipamentosResources {
-    
+
     @Inject
     EquipamentosService equipamentosService;
-    
+
     @GET
     public Response getALL() {
         return Response.ok(equipamentosService.getAll()).build();
     }
-    
+
     @GET
     @Path("{id}")
     public Response getTodo(@PathParam("id") Integer id) {
         Equipamento equipamento = equipamentosService.findById(id);
-        
+
         return Response.ok(equipamento).build();
     }
-    
+
     @POST
     public Response create(Equipamento equipamento) {
         equipamentosService.create(equipamento);
         return Response.ok().build();
     }
-    
+
     @PUT
     @Path("{id}")
     public Response update(@PathParam("id") Integer id, Equipamento equipamento) {
@@ -50,10 +50,10 @@ public class EquipamentosResources {
         equipamentoUpdate.setMarca(equipamento.getMarca());
         equipamentoUpdate.setDescricao(equipamento.getDescricao());
         equipamentosService.update(equipamentoUpdate);
-        
+
         return Response.ok().build();
     }
-    
+
     @DELETE
     @Path("{id}")
     public Response delete(@PathParam("id") Integer id) {
