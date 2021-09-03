@@ -7,30 +7,50 @@ package domain;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+
+@Entity
+@Table
 public class Endereco implements Serializable {
-    
-  
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
+    @Column(length = 128, nullable = false)
     private String logradouro;
+
+    @Column(length = 128, nullable = false)
     private String numero;
+
+    @Column(length = 128, nullable = false)
     private String complemento;
+
+    @Column(length = 128, nullable = false)
     private String bairro;
+
+    @Column(length = 128, nullable = false)
     private String cep;
+
+    @Column(length = 128, nullable = false)
     private String cidade;
+
+    @Column(length = 128, nullable = false)
     private String estado;
+
     @OneToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
-    public Endereco(){
+    public Endereco() {
     }
 
     public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, String cidade, String estado) {
@@ -60,7 +80,6 @@ public class Endereco implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
 
     public String getLogradouro() {
         return logradouro;
@@ -120,8 +139,12 @@ public class Endereco implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Endereco endereco = (Endereco) o;
         return Objects.equals(id, endereco.id);
     }
@@ -130,7 +153,5 @@ public class Endereco implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
-    
-    
-    
+
 }

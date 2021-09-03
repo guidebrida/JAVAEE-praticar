@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package infra;
 
 import java.sql.Connection;
@@ -11,10 +6,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-/**
- *
- * @author guilherme.bona
- */
+
+
 public class ConexaoPostgresJDBC implements ConexaoJBDC {
 
     private Connection connection = null;
@@ -44,6 +37,7 @@ public class ConexaoPostgresJDBC implements ConexaoJBDC {
         }
     }
 
+    
     public void commit() throws SQLException {
         this.connection.commit();
         this.close();

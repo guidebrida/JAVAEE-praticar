@@ -7,6 +7,7 @@ package domain;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,17 +19,21 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Equipamento implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(length = 128, nullable = false)
     private String nome;
+    @Column(length = 128, nullable = false)
     private String marca;
+    @Column(length = 128, nullable = false)
     private String descricao;
+    @Column(length = 128, nullable = false)
     private String defeito;
-    
+
     @ManyToOne
-    @JoinColumn(name = "ordemDeServico_id")
+    @JoinColumn(name = "ordemDeServico_id", nullable = false)
     private OrdemDeServico ordemDeServico;
 
     public Equipamento() {
@@ -114,9 +119,5 @@ public class Equipamento implements Serializable {
         }
         return true;
     }
-    
-    
-    
 
-    
 }

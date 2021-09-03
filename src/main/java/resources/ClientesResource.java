@@ -16,6 +16,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import services.ClienteService;
 import dto.ClienteNewDTO;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 @Path("clientes")
 public class ClientesResource {
@@ -29,6 +31,7 @@ public class ClientesResource {
     }
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     public Response getTodo(@PathParam("id") Integer id) {
         Cliente Cliente = clienteServices.findById(id);
@@ -37,13 +40,16 @@ public class ClientesResource {
     }
 
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/")
     public Response create(ClienteNewDTO clinewDTO) {
         clienteServices.create(clinewDTO);
         return Response.ok().build();
     }
 
     @PUT
-    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id}/")
     public Response update(@PathParam("id") Integer id, Cliente cliente) {
         Cliente clienteUpdate = clienteServices.findById(id);
         clienteUpdate.setCpfCnpj(cliente.getCpfCnpj());
@@ -56,6 +62,7 @@ public class ClientesResource {
     }
 
     @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     public Response delete(@PathParam("id") Integer id) {
         Cliente cliente = clienteServices.findById(id);

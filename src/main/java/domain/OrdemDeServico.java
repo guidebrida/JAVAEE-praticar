@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table
@@ -28,19 +31,23 @@ public class OrdemDeServico implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data", nullable = false, updatable = false)
     private LocalDateTime instante;
+    @Column(nullable = false)
     private Integer status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ordemDeServico")
     private List<Equipamento> equipamentos = new ArrayList<>();
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
+    @Column(length = 128, nullable = false)
     public String imageUrl;
 
     public OrdemDeServico() {
     }
 
-public OrdemDeServico(Integer id, Status status, String imageUrl) {
+    public OrdemDeServico(Integer id, Status status, String imageUrl) {
         this.id = id;
         this.instante = LocalDateTime.now();
         this.status = (status == null) ? null : status.getCod();
