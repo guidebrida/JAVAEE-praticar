@@ -32,8 +32,12 @@ public class ClienteService {
         em.merge(cliente);
     }
 
-    public void create(Cliente cliente) {
-        em.persist(cliente);
+    public void create(ClienteNewDTO objDto) {
+        Cliente cli = new Cliente();
+
+        cli = this.fromDTO(objDto);
+
+        em.persist(cli);
     }
 
     public void delete(Cliente cliente) {
@@ -45,12 +49,11 @@ public class ClienteService {
     }
 
     public Cliente fromDTO(ClienteNewDTO objDto) {
-//        Endereco end = new Endereco( objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), objDto.getCidade(), objDto.getEstado());
-        //     Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(),objDto.getBairro(), objDto.getCep(),objDto.getCidade(), objDto.getEstado());
+        Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), objDto.getCidade(), objDto.getEstado());
         Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfCnpj(), objDto.getTelefone(), objDto.getTipoCliente());
-//       em.merge(end);
-//        cli.setEndereco(end);
-//        end.setCliente(cli);
+        em.merge(end);
+        cli.setEndereco(end);
+        end.setCliente(cli);
         return cli;
     }
 

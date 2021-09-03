@@ -15,7 +15,7 @@ import javax.ws.rs.core.Application;
  * @author Juneau
  */
 @ApplicationPath("app")
-public class JAXRSConfiguration extends Application {
+public class MyApplication extends Application {
 
     OrdemDeServico os1 = new OrdemDeServico(null, Status.AGUARDANDOAPROVACAO, "https://debrida-projeto-betha.s3.sa-east-1.amazonaws.com/odfoto.jpg");
     OrdemDeServico os2 = new OrdemDeServico(null, Status.APROVADO, "https://debrida-projeto-betha.s3.sa-east-1.amazonaws.com/odfoto.jpg");

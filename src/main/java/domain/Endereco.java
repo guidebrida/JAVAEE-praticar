@@ -15,9 +15,10 @@ import javax.persistence.OneToOne;
 
 public class Endereco implements Serializable {
     
+  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; 
+    private Integer id;
     private String logradouro;
     private String numero;
     private String complemento;
@@ -29,10 +30,11 @@ public class Endereco implements Serializable {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    public Endereco() {
+    public Endereco(){
     }
-    
-    public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, String cidade, String estado, Cliente cliente) {
+
+    public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, String cidade, String estado) {
+        super();
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -41,6 +43,13 @@ public class Endereco implements Serializable {
         this.cep = cep;
         this.cidade = cidade;
         this.estado = estado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
@@ -52,12 +61,21 @@ public class Endereco implements Serializable {
         this.id = id;
     }
 
+
     public String getLogradouro() {
         return logradouro;
     }
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public String getComplemento() {
@@ -73,7 +91,7 @@ public class Endereco implements Serializable {
     }
 
     public void setBairro(String bairro) {
-        this.bairro = bairro;
+        bairro = bairro;
     }
 
     public String getCep() {
@@ -100,47 +118,18 @@ public class Endereco implements Serializable {
         this.estado = estado;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Endereco endereco = (Endereco) o;
+        return Objects.equals(id, endereco.id);
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        return hash;
+        return Objects.hash(id);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Endereco other = (Endereco) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
-    
     
     
     
