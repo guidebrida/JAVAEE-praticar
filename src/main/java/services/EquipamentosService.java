@@ -1,4 +1,3 @@
-
 package services;
 
 import domain.Equipamento;
@@ -10,8 +9,8 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class EquipamentosService {
 
-    @PersistenceContext(unitName = "restapi_PU")
-    EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
     public List getAll() {
         return em.createNamedQuery("Equipamento.findAll", Equipamento.class).getResultList();
@@ -36,5 +35,5 @@ public class EquipamentosService {
 
         em.remove(equipamento);
     }
-    
+
 }

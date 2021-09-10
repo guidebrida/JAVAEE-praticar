@@ -7,8 +7,12 @@ package domain;
 
 import domain.enums.Status;
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,7 +37,7 @@ public class OrdemDeServico implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data", nullable = false, updatable = false)
-    private LocalDateTime instante;
+    private Date instante;
     @Column(nullable = false)
     private Integer status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ordemDeServico")
@@ -49,7 +53,8 @@ public class OrdemDeServico implements Serializable {
 
     public OrdemDeServico(Integer id, Status status, String imageUrl) {
         this.id = id;
-        this.instante = LocalDateTime.now();
+//        this.instante = LocalDateTime.now();
+        this.instante = new Date();
         this.status = (status == null) ? null : status.getCod();
         this.imageUrl = imageUrl;
 
@@ -64,11 +69,12 @@ public class OrdemDeServico implements Serializable {
     }
 
     public LocalDateTime getInstante() {
-        return instante;
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(instante.getTime()),
+                ZoneId.systemDefault());
     }
 
     public void setInstante(LocalDateTime instante) {
-        this.instante = instante;
+        this.instante = Date.from(instante.toInstant(ZoneOffset.UTC));
     }
 
     public Status getStatus() {

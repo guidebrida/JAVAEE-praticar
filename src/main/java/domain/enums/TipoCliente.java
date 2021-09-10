@@ -21,7 +21,7 @@ public enum TipoCliente {
         this.descricao = descricao;
     }
 
-       public int getCod() {
+    public int getCod() {
         return cod;
     }
 
@@ -36,6 +36,7 @@ public enum TipoCliente {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
     public static TipoCliente toEnum(Integer cod) {
         if (cod == null) {
             return null;

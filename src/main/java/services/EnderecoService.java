@@ -1,4 +1,3 @@
-
 package services;
 
 import domain.Endereco;
@@ -10,8 +9,8 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class EnderecoService {
 
-    @PersistenceContext(unitName = "restapi_PU")
-    EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
     public List getAll() {
         return em.createNamedQuery("Endereco.findAll", Endereco.class).getResultList();

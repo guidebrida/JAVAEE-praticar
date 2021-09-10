@@ -1,8 +1,7 @@
-
 package domain.enums;
 
 public enum Status {
-    
+
     FAZENDOORCAMENENTO(0, "FAZENDO_ORCAMENTO"),
     AGUARDANDOAPROVACAO(1, "AGUARDANDO_APROVACAO"),
     APROVADO(2, "APROVADO"),
@@ -17,7 +16,6 @@ public enum Status {
         this.descricao = descricao;
     }
 
-    
     public int getCod() {
         return cod;
     }
@@ -29,8 +27,8 @@ public enum Status {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-        
-        public static Status toEnum(Integer cod) {
+
+    public static Status toEnum(Integer cod) {
         if (cod == null) {
             return null;
         }
@@ -42,6 +40,4 @@ public enum Status {
         throw new IllegalArgumentException("Id inválido: " + cod);
     }
 
-
 }
-

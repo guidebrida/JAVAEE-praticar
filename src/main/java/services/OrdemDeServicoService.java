@@ -16,8 +16,8 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class OrdemDeServicoService {
 
-    @PersistenceContext(unitName = "restapi_PU")
-    EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
     @Inject
     ClienteService clienteService;
@@ -49,7 +49,6 @@ public class OrdemDeServicoService {
 //    public OrdemDeServico fromDTO(OrdemDeServicoDTO objDto) {
 //        return new OrdemDeServico(objDto.getId(), null, null);
 //    }
-
     public OrdemDeServico fromDTO(OrdemDeServicoNewDTO objDto) {
         OrdemDeServico ord = new OrdemDeServico();
         Cliente cli = clienteService.findById(objDto.getClienteId());
@@ -62,14 +61,14 @@ public class OrdemDeServicoService {
         ord.setEquipamentos(eq.getOrdemDeServico().getEquipamentos());
         return ord;
     }
-    
-        private void updateData(OrdemDeServico newObj, OrdemDeServico obj) {
+
+    private void updateData(OrdemDeServico newObj, OrdemDeServico obj) {
         newObj.setInstante(obj.getInstante());
         newObj.setCliente(obj.getCliente());
         newObj.setEquipamentos(obj.getEquipamentos());
         newObj.setImageUrl(obj.getImageUrl());
     }
-        
+
 //    
 //      public OrdemDeServico aprovarStatus(Integer id){
 //        OrdemDeServico obj = find(id);
@@ -82,5 +81,4 @@ public class OrdemDeServicoService {
 //        obj.setStatus(Status.REJEITADO);
 //        return repo.save(obj);
 //    }
-
 }

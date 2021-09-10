@@ -7,7 +7,6 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class ConexaoPostgresJDBC implements ConexaoJBDC {
 
     private Connection connection = null;
@@ -17,9 +16,9 @@ public class ConexaoPostgresJDBC implements ConexaoJBDC {
 
         Properties properties = new Properties();
         properties.put("user", "postgres");
-        properties.put("password", "postgres");
+        properties.put("password", "1153");
 
-        this.connection = DriverManager.getConnection("jdbc:postgresql:localhost:7070/projetojavaee", properties);
+        this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:7070/projetojavaee", properties);
         this.connection.setAutoCommit(false);
     }
 
@@ -37,13 +36,11 @@ public class ConexaoPostgresJDBC implements ConexaoJBDC {
         }
     }
 
-    
     public void commit() throws SQLException {
         this.connection.commit();
         this.close();
     }
 
-    
     public void rollback() {
         if (this.connection != null) {
             try {

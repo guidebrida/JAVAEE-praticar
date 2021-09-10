@@ -3,14 +3,13 @@ import domain.Cliente;
 import domain.Endereco;
 import domain.Equipamento;
 import domain.OrdemDeServico;
-import domain.enums.Funcionarios;
 import domain.enums.Status;
 import domain.enums.TipoCliente;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 
-@ApplicationPath("app")
+@ApplicationPath("rest")
 public class MyApplication extends Application {
 
 //    OrdemDeServico os1 = new OrdemDeServico(null, Status.AGUARDANDOAPROVACAO, "https://debrida-projeto-betha.s3.sa-east-1.amazonaws.com/odfoto.jpg");

@@ -17,8 +17,8 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class ClienteService {
 
-    @PersistenceContext(unitName = "restapi_PU")
-    EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
     public List getAll() {
         return em.createNamedQuery("Cliente.findAll", Cliente.class).getResultList();
